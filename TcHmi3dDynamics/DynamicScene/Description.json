@@ -1,0 +1,99 @@
+{
+  "$schema": "../.hmiframework/Schema/ControlDescription.Schema.json",
+  "apiVersion": 1,
+  "name": "DynamicScene",
+  "namespace": "TcHmi.Controls.TcHmi3dDynamics",
+  "displayName": "DynamicScene",
+  "version": {
+    "full": "1.0.0.0",
+    "major": 1,
+    "minor": 0,
+    "revision": 0,
+    "build": 0
+  },
+  "visible": true,
+  "themeable": "Standard",
+  "base": "TcHmi.Controls.System.TcHmiControl",
+  "description": "This description text will be used as a Tooltip in Visual Studio.",
+  "properties": {
+    "containerControl": false,
+    "geometry": {
+      "width": 150,
+      "height": 150
+    }
+  },
+  "icons": [
+    {
+      "name": "Icons/16x16.png",
+      "width": 16,
+      "height": 16
+    }
+  ],
+  "template": "Template.html",
+  "dependencyFiles": [
+    {
+      "name": "DynamicScene.js",
+      "type": "JavaScript",
+      "description": "Contains all the main logic."
+    },
+    {
+      "name": "Style.css",
+      "type": "Stylesheet",
+      "description": "Theme independent style"
+    },
+    {
+      "name": "lib/babylonjs/babylon.js",
+      "type": "JavaScript",
+      "description": "BabylonJs"
+    },
+    {
+      "name": "lib/babylonjs/babylonjs.loaders.min.js",
+      "type": "JavaScript",
+      "description": "BabylonJs loaders"
+    }
+  ],
+  "themes": {
+    "Base": {
+      "resources": [
+        {
+          "name": "Themes/Base/Style.css",
+          "type": "Stylesheet",
+          "description": "Theme dependent style"
+        }
+      ]
+    },
+    "Base-Dark": {
+      "resources": [
+        {
+          "name": "Themes/Base-Dark/Style.css",
+          "type": "Stylesheet",
+          "description": "Theme dependent style"
+        }
+      ]
+    }
+  },
+  "attributes": [
+    {
+      "name": "data-tchmi-mesh-list",
+      "displayName": "Mesh List",
+      "type": "tchmi:framework#/definitions/TcHmi.Controls.TcHmi3dDynamics.DynamicScene.MeshList",
+      "propertyGetterName": "getMeshList",
+      "propertySetterName": "setMeshList",
+      "propertyName": "meshList",
+      "bindable": true,
+      "allowSymbolExpressionsInObject": true,
+      "category": "Common",
+      "defaultValue": null,
+      "defaultValueInternal": null,
+      "description": "List of meshes"
+    }
+  ],
+  "attributeCategories": [],
+  "functions": [],
+  "events": [],
+  "dataTypes": [
+    {
+      "schema": "Schema/Types.Schema.json"
+    }
+  ]
+}

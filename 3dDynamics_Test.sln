@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# TcXaeShell Solution File, Format Version 11.00
+VisualStudioVersion = 17.7.34302.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FE7A1B72-C5B7-4D7C-BB7D-76384D4DE8E1}") = "3dDynamics_Test", "3dDynamics_Test\3dDynamics_Test.hmiproj", "{661A80B1-0CAC-4F57-A629-A1675B09BB2C}"
+EndProject
+Project("{3B740506-4966-4147-AB1F-357FE08946EA}") = "TcHmi3dDynamics", "TcHmi3dDynamics\TcHmi3dDynamics.hmiextproj", "{52A5D543-4A69-4BA4-ADA7-DF560AD6C8B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|TwinCAT HMI = Debug|TwinCAT HMI
+		Release|TwinCAT HMI = Release|TwinCAT HMI
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{661A80B1-0CAC-4F57-A629-A1675B09BB2C}.Debug|TwinCAT HMI.ActiveCfg = Debug|TwinCAT HMI
+		{661A80B1-0CAC-4F57-A629-A1675B09BB2C}.Debug|TwinCAT HMI.Build.0 = Debug|TwinCAT HMI
+		{661A80B1-0CAC-4F57-A629-A1675B09BB2C}.Release|TwinCAT HMI.ActiveCfg = Release|TwinCAT HMI
+		{661A80B1-0CAC-4F57-A629-A1675B09BB2C}.Release|TwinCAT HMI.Build.0 = Release|TwinCAT HMI
+		{52A5D543-4A69-4BA4-ADA7-DF560AD6C8B0}.Debug|TwinCAT HMI.ActiveCfg = Debug|TwinCAT HMI
+		{52A5D543-4A69-4BA4-ADA7-DF560AD6C8B0}.Debug|TwinCAT HMI.Build.0 = Debug|TwinCAT HMI
+		{52A5D543-4A69-4BA4-ADA7-DF560AD6C8B0}.Release|TwinCAT HMI.ActiveCfg = Release|TwinCAT HMI
+		{52A5D543-4A69-4BA4-ADA7-DF560AD6C8B0}.Release|TwinCAT HMI.Build.0 = Release|TwinCAT HMI
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2098CF71-DDEB-4DA0-AFBC-0222233102C0}
+	EndGlobalSection
+EndGlobal
