@@ -37,6 +37,8 @@ var TcHmi;
                     this.__engine = null;
                     this.__scene = null;
                     this.__meshList = [];
+                    this.__loadedMeshes = [];
+                    this.__loadingMeshes = false;
 
                     //// TODO: animation smoothing
                     //this.__vectMap = {};
@@ -122,7 +124,7 @@ var TcHmi;
                         // axis viewer
                         new BABYLON.Debug.AxesViewer(scene, 0.1);
 
-                        // render mesh list
+                        // import meshes
                         if (this.__meshList.length) {
                             this.__importMeshes(this.__meshList);
                         }
@@ -148,40 +150,61 @@ var TcHmi;
                     }
                 }
 
-                __importMeshes(meshes) {
+                async __importMeshes(meshes) {
 
-                    meshes.forEach(async mesh => {
+                    // prevent concurrent calls
+                    if (this.__loadingMeshes) return;
+                    this.__loadingMeshes = true;
+
+                    // clear active meshes
+                    if (this.__loadedMeshes.length) {
+                        this.__loadedMeshes.forEach(m => m.dispose());
+                        this.__loadedMeshes.length = 0;
+                    }
+
+                    for (const mesh of meshes) {
                         let m;
                         if (mesh.path) {
                             // import
                             const imported = await BABYLON.SceneLoader.ImportMeshAsync(null, mesh.path);
                             m = imported.meshes[0];
+
+                            // mesh properties
+                            m.id = mesh.meshName;
+
+                            // apply initial properties
+                            if (m) {
+
+                                m.position.x = mesh.position.x;
+                                m.position.y = mesh.position.y;
+                                m.position.z = mesh.position.z;
+
+                                m.rotate(BABYLON.Axis.X, mesh.rotation.x, BABYLON.Space.WORLD);
+                                m.rotate(BABYLON.Axis.Y, mesh.rotation.y, BABYLON.Space.WORLD);
+                                m.rotate(BABYLON.Axis.Z, mesh.rotation.z, BABYLON.Space.WORLD);
+
+                                m.scaling.x = mesh.scaling.x;
+                                m.scaling.y = mesh.scaling.y;
+                                m.scaling.z = mesh.scaling.z;
+
+                                this.__loadedMeshes.push(m);
+                            }
                         }
+                    }
 
-                        // mesh properties
-                        m.id = mesh.meshName;
-
-                        // apply initial properties
-                        if (m && mesh.position) {
-
-                            m.position.x = mesh.position.x;
-                            m.position.y = mesh.position.y;
-                            m.position.z = mesh.position.z;
-
-                            m.rotate(BABYLON.Axis.X, mesh.rotation.x, BABYLON.Space.WORLD);
-                            m.rotate(BABYLON.Axis.Y, mesh.rotation.y, BABYLON.Space.WORLD);
-                            m.rotate(BABYLON.Axis.Z, mesh.rotation.z, BABYLON.Space.WORLD);
-
-                            m.scaling.x = mesh.scaling.x;
-                            m.scaling.y = mesh.scaling.y;
-                            m.scaling.z = mesh.scaling.z;
-                        }
-                    });
+                    this.__loadingMeshes = false;
                 }
 
                 __updateMeshList(meshes) {
 
                     this.__meshList = meshes;
+
+                    // mesh count changed, re-import
+                    if (meshes.length !== this.__loadedMeshes.length) {
+                        this.__importMeshes(meshes);
+                        return;
+                    }
+
                     if (meshes?.length && this.__scene) {
 
                         const scene = this.__scene;
@@ -189,6 +212,7 @@ var TcHmi;
                         // basic translation
                         meshes.forEach(mesh => {
                             const m = scene.meshes.find(x => x.id === mesh.meshName);
+                            if (!m) return;
 
                             m.position.x = mesh.position.x;
                             m.position.y = mesh.position.y;
@@ -199,9 +223,9 @@ var TcHmi;
                             m.rotate(BABYLON.Axis.Y, mesh.rotation.y * Math.PI / 180, BABYLON.Space.WORLD);
                             m.rotate(BABYLON.Axis.Z, mesh.rotation.z * Math.PI / 180, BABYLON.Space.WORLD);
 
-                            m.scaling.x = mesh.scaling.x || 1.0;
-                            m.scaling.y = mesh.scaling.y || 1.0;
-                            m.scaling.z = mesh.scaling.z || 1.0;
+                            m.scaling.x = mesh.scaling.x;
+                            m.scaling.y = mesh.scaling.y;
+                            m.scaling.z = mesh.scaling.z;
                         });
                         
                         //// TODO: position animation smoothing - 

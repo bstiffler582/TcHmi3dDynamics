@@ -4209,24 +4209,48 @@
                 "displayName": "Position",
                 "category": "General",
                 "description": "Mesh position",
-                "defaultValue": null,
-                "defaultValueInternal": null
+                "defaultValue": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0
+                },
+                "defaultValueInternal": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0
+                }
               },
               {
                 "name": "rotation",
                 "displayName": "Rotation",
                 "category": "General",
                 "description": "Mesh rotation",
-                "defaultValue": null,
-                "defaultValueInternal": null
+                "defaultValue": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0
+                },
+                "defaultValueInternal": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0
+                }
               },
               {
                 "name": "scaling",
                 "displayName": "Scaling",
                 "category": "General",
                 "description": "Mesh scaling",
-                "defaultValue": null,
-                "defaultValueInternal": null
+                "defaultValue": {
+                  "x": 1.0,
+                  "y": 1.0,
+                  "z": 1.0
+                },
+                "defaultValueInternal": {
+                  "x": 1.0,
+                  "y": 1.0,
+                  "z": 1.0
+                }
               }
             ],
             "properties": {

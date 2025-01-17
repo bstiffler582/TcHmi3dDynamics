@@ -2744,6 +2744,60 @@
             },
             "USEMAPPING": true
         },
+        "ServerX": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSrv",
+            "DYNAMIC": true,
+            "MAPPING": "",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/Number"
+                    },
+                    {
+                        "default": 0.0
+                    }
+                ]
+            },
+            "USEMAPPING": false
+        },
+        "ServerY": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSrv",
+            "DYNAMIC": true,
+            "MAPPING": "",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/Number"
+                    },
+                    {
+                        "default": 0.0
+                    }
+                ]
+            },
+            "USEMAPPING": false
+        },
+        "ServerZ": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSrv",
+            "DYNAMIC": true,
+            "MAPPING": "",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/Number"
+                    },
+                    {
+                        "default": 0.0
+                    }
+                ]
+            },
+            "USEMAPPING": false
+        },
         "SetConfiguration": {
             "ACCESS": 3,
             "DOMAIN": "TcHmiSrv",
@@ -3600,6 +3654,9 @@
                 "LocalizeText": 3,
                 "Login": 3,
                 "Logout": 3,
+                "ServerX": 3,
+                "ServerY": 3,
+                "ServerZ": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
                 "TcHmiSqliteLogger.Diagnostics": 3,
@@ -3611,7 +3668,8 @@
                 "Unsubscribe": 3,
                 "UnsubscribeEvents": 3,
                 "UpdateEventsSubscription": 3,
-                "UserSelectType": 1
+                "UserSelectType": 1,
+                "xTestServer": 3
             }
         }
     },
