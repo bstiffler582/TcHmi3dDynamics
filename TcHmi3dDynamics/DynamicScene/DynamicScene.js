@@ -40,9 +40,8 @@ var TcHmi;
                     this.__loadedMeshes = [];
                     this.__loadingMeshes = false;
 
-                    //// TODO: animation smoothing
-                    //this.__vectMap = {};
-                    //this.__animationRate = 0.05;
+                    // animation
+                    this.__wsInterval = 500;
                 }
                 /**
                  * Raised after the control was added to the control cache and the constructors of all base classes were called.
@@ -69,6 +68,11 @@ var TcHmi;
                  * @returns {void}
                  */
                 __init() {
+
+                    // websocket update rate effects animation framing
+                    const config = TcHmi.Config.get();
+                    this.__wsInterval = config.tcHmiServer.websocketIntervalTime;
+
                     this.__createScene();
                     super.__init();
                 }
@@ -129,18 +133,6 @@ var TcHmi;
                             this.__importMeshes(this.__meshList);
                         }
 
-                        //// TODO: animation smoothing
-                        //const vectMap = this.__vectMap;
-                        //const animationRate = this.__animationRate;
-                        //scene.registerBeforeRender(function () {
-                        //    for (const [key, value] of Object.entries(vectMap)) {
-                        //        if (value.distanceVector > 0) {
-                        //            value.distanceVector -= animationRate;
-			    		//            value.mesh.translate(value.targetNorm, animationRate, BABYLON.Space.WORLD);
-                        //        }
-                        //    }
-                        //});
-
                         // render loop
                         this.__engine.runRenderLoop(function () {
                             scene.render();
@@ -179,15 +171,26 @@ var TcHmi;
                                 m.position.y = mesh.position.y;
                                 m.position.z = mesh.position.z;
 
-                                m.rotate(BABYLON.Axis.X, mesh.rotation.x, BABYLON.Space.WORLD);
-                                m.rotate(BABYLON.Axis.Y, mesh.rotation.y, BABYLON.Space.WORLD);
-                                m.rotate(BABYLON.Axis.Z, mesh.rotation.z, BABYLON.Space.WORLD);
+                                m.rotate(BABYLON.Axis.X, mesh.rotation.x * Math.PI / 180, BABYLON.Space.WORLD);
+                                m.rotate(BABYLON.Axis.Y, mesh.rotation.y * Math.PI / 180, BABYLON.Space.WORLD);
+                                m.rotate(BABYLON.Axis.Z, mesh.rotation.z * Math.PI / 180, BABYLON.Space.WORLD);
 
                                 m.scaling.x = mesh.scaling.x;
                                 m.scaling.y = mesh.scaling.y;
                                 m.scaling.z = mesh.scaling.z;
 
                                 this.__loadedMeshes.push(m);
+                            }
+
+                            // calculate animation frames per second
+                            // number of key frames * (1000ms / HMI update interval)
+                            const fps = 2 * (1000 / this.__wsInterval);
+
+                            if (mesh.animate) {
+                                const xpos = new BABYLON.Animation("xpos", "position.x", fps, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+                                const frames = [{ frame: 0, value: m.position.x }, { frame: 1, value: m.position.x }];
+                                xpos.setKeys(frames);
+                                m.animations.push(xpos);
                             }
                         }
                     }
@@ -209,11 +212,19 @@ var TcHmi;
 
                         const scene = this.__scene;
 
-                        // basic translation
                         meshes.forEach(mesh => {
                             const m = scene.meshes.find(x => x.id === mesh.meshName);
                             if (!m) return;
 
+                            if (mesh.animate && m.animations[0]) {
+                                const keys = m.animations[0].getKeys();
+                                keys[0].value = m.position.x;
+                                keys[1].value = mesh.position.x;
+                                scene.beginAnimation(m, 0, 1);
+                                return;
+                            }
+
+                            // basic translation
                             m.position.x = mesh.position.x;
                             m.position.y = mesh.position.y;
                             m.position.z = mesh.position.z;
@@ -227,23 +238,6 @@ var TcHmi;
                             m.scaling.y = mesh.scaling.y;
                             m.scaling.z = mesh.scaling.z;
                         });
-                        
-                        //// TODO: position animation smoothing - 
-                        //// store vector data and handle translation in render loop (registerBeforeRender)
-                        //let vectMap = this.__vectMap;
-                        //meshes.forEach(mesh => {
-                        //    const m = scene.meshes.find(x => x.id === mesh.meshName);
-                        //    let targetVector = new BABYLON.Vector3(mesh.position.x, mesh.position.y, mesh.position.z);
-                        //    const currentPosVector = m.position.clone();
-                        //    const distanceVector = BABYLON.Vector3.Distance(targetVector, currentPosVector);
-                        //    targetVector = targetVector.subtract(currentPosVector);
-                        //    const targetNorm = BABYLON.Vector3.Normalize(targetVector);
-                        //    if (!vectMap[m.id])
-                        //        vectMap[m.id] = {};
-                        //    vectMap[m.id].distanceVector = distanceVector;
-                        //    vectMap[m.id].targetNorm = targetNorm;
-                        //    vectMap[m.id].mesh = m;
-                        //});
                     }
                 }
 

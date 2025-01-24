@@ -23,7 +23,8 @@
       "x": "%i%TestScale%/i%",
       "y": "%i%TestScale%/i%",
       "z": "%i%TestScale%/i%"
-    }
+    },
+    "animate": true
   }
 ]
 </script>

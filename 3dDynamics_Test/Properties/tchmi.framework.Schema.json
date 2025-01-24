@@ -4251,6 +4251,14 @@
                   "y": 1.0,
                   "z": 1.0
                 }
+              },
+              {
+                "name": "animate",
+                "displayName": "Animate",
+                "category": "General",
+                "description": "Apply animation frames to dynamics",
+                "defaultValue": false,
+                "defaultValueInternal": false
               }
             ],
             "properties": {
@@ -4268,6 +4276,9 @@
               },
               "scaling": {
                 "$ref": "tchmi:framework#/definitions/TcHmi.Controls.TcHmi3dDynamics.DynamicScene.Vector3"
+              },
+              "animate": {
+                "type": "boolean"
               }
             },
             "additionalProperties": false,
