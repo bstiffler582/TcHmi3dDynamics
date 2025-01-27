@@ -4291,7 +4291,7 @@
       }
     },
     "TcHmi.Controls.TcHmi3dDynamics.DynamicScene.Vector3": {
-      "title": "MeshPosition",
+      "title": "Vector3",
       "type": "object",
       "description": "XYZ axis values",
       "propertiesMeta": [

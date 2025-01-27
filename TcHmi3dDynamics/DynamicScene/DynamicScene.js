@@ -154,43 +154,32 @@ var TcHmi;
                         this.__loadedMeshes.length = 0;
                     }
 
+                    // calculate animation frames per second
+                    // number of key frames * (1000ms / HMI update interval)
+                    const fps = 2 * (1000 / this.__wsInterval);
+
                     for (const mesh of meshes) {
-                        let m;
                         if (mesh.path) {
                             // import
                             const imported = await BABYLON.SceneLoader.ImportMeshAsync(null, mesh.path);
-                            m = imported.meshes[0];
+                            const m = imported.meshes[0];
 
                             // mesh properties
                             m.id = mesh.meshName;
 
                             // apply initial properties
-                            if (m) {
+                            m.position = new BABYLON.Vector3(mesh.position.x, mesh.position.y, mesh.position.z);
+                            m.rotation = new BABYLON.Vector3(mesh.rotation.x * Math.PI / 180, mesh.rotation.y * Math.PI / 180, mesh.rotation.z * Math.PI / 180);
+                            m.scaling = new BABYLON.Vector3(mesh.scaling.x, mesh.scaling.y, mesh.scaling.z);
 
-                                m.position.x = mesh.position.x;
-                                m.position.y = mesh.position.y;
-                                m.position.z = mesh.position.z;
-
-                                m.rotate(BABYLON.Axis.X, mesh.rotation.x * Math.PI / 180, BABYLON.Space.WORLD);
-                                m.rotate(BABYLON.Axis.Y, mesh.rotation.y * Math.PI / 180, BABYLON.Space.WORLD);
-                                m.rotate(BABYLON.Axis.Z, mesh.rotation.z * Math.PI / 180, BABYLON.Space.WORLD);
-
-                                m.scaling.x = mesh.scaling.x;
-                                m.scaling.y = mesh.scaling.y;
-                                m.scaling.z = mesh.scaling.z;
-
-                                this.__loadedMeshes.push(m);
-                            }
-
-                            // calculate animation frames per second
-                            // number of key frames * (1000ms / HMI update interval)
-                            const fps = 2 * (1000 / this.__wsInterval);
+                            this.__loadedMeshes.push(m);
 
                             if (mesh.animate) {
-                                const xpos = new BABYLON.Animation("xpos", "position.x", fps, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
-                                const frames = [{ frame: 0, value: m.position.x }, { frame: 1, value: m.position.x }];
-                                xpos.setKeys(frames);
-                                m.animations.push(xpos);
+                                ["position", "rotation", "scaling"].forEach(prop => {
+                                    const animation = new BABYLON.Animation(prop, prop, fps, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+                                    animation.setKeys([{ frame: 0, value: m[prop] }, { frame: 1, value: m[prop] }]);
+                                    m.animations.push(animation);
+                                });
                             }
                         }
                     }
@@ -199,7 +188,7 @@ var TcHmi;
                 }
 
                 __updateMeshList(meshes) {
-
+                    
                     this.__meshList = meshes;
 
                     // mesh count changed, re-import
@@ -216,27 +205,51 @@ var TcHmi;
                             const m = scene.meshes.find(x => x.id === mesh.meshName);
                             if (!m) return;
 
-                            if (mesh.animate && m.animations[0]) {
-                                const keys = m.animations[0].getKeys();
-                                keys[0].value = m.position.x;
-                                keys[1].value = mesh.position.x;
+                            // animations
+                            if (mesh.animate) {
+
+                                // position
+                                if (m.animations[0]) {
+                                    const posKeys = m.animations[0].getKeys();
+                                    posKeys[0].value = m.position;
+                                    posKeys[1].value = new BABYLON.Vector3(mesh.position.x, mesh.position.y, mesh.position.z);
+                                }
+
+                                // rotation
+                                if (m.animations[1]) {
+                                    const rotKeys = m.animations[1].getKeys();
+                                    rotKeys[0].value = m.rotation;
+                                    rotKeys[1].value = new BABYLON.Vector3(
+                                        mesh.rotation.x * Math.PI / 180,
+                                        mesh.rotation.y * Math.PI / 180,
+                                        mesh.rotation.z * Math.PI / 180
+                                    );
+                                }
+
+                                // scaling
+                                if (m.animations[2]) {
+                                    const sclKeys = m.animations[2].getKeys();
+                                    sclKeys[0].value = m.scaling;
+                                    sclKeys[1].value = new BABYLON.Vector3(mesh.scaling.x, mesh.scaling.y, mesh.scaling.z);
+                                }
+
                                 scene.beginAnimation(m, 0, 1);
-                                return;
+
+                            } else {
+                                // basic translation
+                                m.position.x = mesh.position.x;
+                                m.position.y = mesh.position.y;
+                                m.position.z = mesh.position.z;
+
+                                m.rotation = BABYLON.Vector3.Zero();
+                                m.rotate(BABYLON.Axis.X, mesh.rotation.x * Math.PI / 180, BABYLON.Space.WORLD);
+                                m.rotate(BABYLON.Axis.Y, mesh.rotation.y * Math.PI / 180, BABYLON.Space.WORLD);
+                                m.rotate(BABYLON.Axis.Z, mesh.rotation.z * Math.PI / 180, BABYLON.Space.WORLD);
+
+                                m.scaling.x = mesh.scaling.x;
+                                m.scaling.y = mesh.scaling.y;
+                                m.scaling.z = mesh.scaling.z;
                             }
-
-                            // basic translation
-                            m.position.x = mesh.position.x;
-                            m.position.y = mesh.position.y;
-                            m.position.z = mesh.position.z;
-
-                            m.rotation = BABYLON.Vector3.Zero();
-                            m.rotate(BABYLON.Axis.X, mesh.rotation.x * Math.PI / 180, BABYLON.Space.WORLD);
-                            m.rotate(BABYLON.Axis.Y, mesh.rotation.y * Math.PI / 180, BABYLON.Space.WORLD);
-                            m.rotate(BABYLON.Axis.Z, mesh.rotation.z * Math.PI / 180, BABYLON.Space.WORLD);
-
-                            m.scaling.x = mesh.scaling.x;
-                            m.scaling.y = mesh.scaling.y;
-                            m.scaling.z = mesh.scaling.z;
                         });
                     }
                 }
