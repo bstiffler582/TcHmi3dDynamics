@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Clean;Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.5.8.3\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.5.8.3\build\Microsoft.TypeScript.MSBuild.props')" />
   <Import Project="packages\Microsoft.TypeScript.MSBuild.5.3.2\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('packages\Microsoft.TypeScript.MSBuild.5.3.2\build\Microsoft.TypeScript.MSBuild.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -30,8 +31,10 @@
     <HmiCommunicationRouterPort>10100</HmiCommunicationRouterPort>
     <HmiCommunicationServerAuthPort>13000</HmiCommunicationServerAuthPort>
     <HmiInitial>14.2.116.1</HmiInitial>
-    <HmiRecent>14.2.116.1</HmiRecent>
+    <HmiRecent>14.3.221.1</HmiRecent>
     <HmiServerNodeAdvancedView>False</HmiServerNodeAdvancedView>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup>
     <TwinCATHmi_Tasks>$(TcHmiDirectory)\MSBuild\Beckhoff.TwinCAT.HMI.tasks</TwinCATHmi_Tasks>
@@ -150,10 +153,12 @@
     <Content Include="Models\3dpartscraperV1.stl">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="packages.config">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Server\ADS\ADS.Config.default.json">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Server\ADS\ADS.Config.default.json" />
     <Content Include="Server\ADS\ADS.Config.remote.json">
       <SubType>Content</SubType>
     </Content>
@@ -192,10 +197,6 @@
       <SubType>Content</SubType>
       <Visible>true</Visible>
       <DependentUpon>tsconfig.tpl.json</DependentUpon>
-    </Content>
-    <Content Include="packages.config">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
     </Content>
     <Content Include="packages.xsd">
       <SubType>Content</SubType>
@@ -342,38 +343,8 @@
     <Folder Include="Server\TcHmiSqliteLogger\" />
     <Folder Include="Server\TcHmiSrv\" />
     <Folder Include="Server\TcHmiUserManagement\" />
-    <Content Include="Server\ADS\ADS.Config.default.json">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Server\ADS\ADS.Config.remote.json">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="Server\ADS\ADS.Storage.json">
       <SubType>Content</SubType>
-    </Content>
-    <Content Include="Server\TcHmiLua\TcHmiLua.Config.default.json">
-      <SubType>Content</SubType>
-      <Visible>false</Visible>
-    </Content>
-    <Content Include="Server\TcHmiLua\TcHmiLua.Config.remote.json">
-      <SubType>Content</SubType>
-      <Visible>false</Visible>
-    </Content>
-    <Content Include="Server\TcHmiLua\TcHmiLua.Storage.json">
-      <SubType>Content</SubType>
-      <Visible>false</Visible>
-    </Content>
-    <Content Include="Server\TcHmiSqliteLogger\TcHmiSqliteLogger.Config.default.json">
-      <SubType>Content</SubType>
-      <Visible>false</Visible>
-    </Content>
-    <Content Include="Server\TcHmiSqliteLogger\TcHmiSqliteLogger.Config.remote.json">
-      <SubType>Content</SubType>
-      <Visible>false</Visible>
-    </Content>
-    <Content Include="Server\TcHmiSqliteLogger\TcHmiSqliteLogger.Storage.json">
-      <SubType>Content</SubType>
-      <Visible>false</Visible>
     </Content>
     <Content Include="Server\TcHmiSrv\TcHmiSrv.Config.default.json">
       <SubType>Content</SubType>
@@ -383,18 +354,6 @@
     </Content>
     <Content Include="Server\TcHmiSrv\TcHmiSrv.Storage.json">
       <SubType>Content</SubType>
-    </Content>
-    <Content Include="Server\TcHmiUserManagement\TcHmiUserManagement.Config.default.json">
-      <SubType>Content</SubType>
-      <Visible>false</Visible>
-    </Content>
-    <Content Include="Server\TcHmiUserManagement\TcHmiUserManagement.Config.remote.json">
-      <SubType>Content</SubType>
-      <Visible>false</Visible>
-    </Content>
-    <Content Include="Server\TcHmiUserManagement\TcHmiUserManagement.Storage.json">
-      <SubType>Content</SubType>
-      <Visible>false</Visible>
     </Content>
     <Folder Include="Themes\Base\Images\" />
   </ItemGroup>
@@ -410,6 +369,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.TypeScript.MSBuild.5.3.2\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.TypeScript.MSBuild.5.3.2\build\Microsoft.TypeScript.MSBuild.props'))" />
     <Error Condition="!Exists('packages\Microsoft.TypeScript.MSBuild.5.3.2\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.TypeScript.MSBuild.5.3.2\build\Microsoft.TypeScript.MSBuild.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.5.8.3\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.5.8.3\build\Microsoft.TypeScript.MSBuild.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.5.8.3\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.5.8.3\build\Microsoft.TypeScript.MSBuild.targets'))" />
   </Target>
   <Import Project="packages\Microsoft.TypeScript.MSBuild.5.3.2\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('packages\Microsoft.TypeScript.MSBuild.5.3.2\build\Microsoft.TypeScript.MSBuild.targets')" />
+  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.5.8.3\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.5.8.3\build\Microsoft.TypeScript.MSBuild.targets')" />
 </Project>
