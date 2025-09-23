@@ -1,5 +1,5 @@
 {
-  "$schema": "./../../Packages/Beckhoff.TwinCAT.HMI.Framework.14.3.133/runtimes/native1.12-tchmi/Schema/TchmiConfig.Schema.json",
+  "$schema": "./../../Packages/Beckhoff.TwinCAT.HMI.Framework.14.3.229/runtimes/native1.12-tchmi/Schema/TchmiConfig.Schema.json",
   "basePath": "./Beckhoff.TwinCAT.HMI.Framework",
   "scaleMode": "None",
   "startupView": "Desktop.view",
@@ -12,7 +12,8 @@
     "websocketIntervalTime": 500,
     "websocketTimeout": 20000,
     "websocketSystemTimeout": 60000,
-    "websocketSubscriptionMode": null
+    "websocketSubscriptionMode": null,
+    "disableOptionalSystemSubscriptions": false
   },
   "activeTheme": "Base",
   "themes": {
@@ -69,37 +70,37 @@
   "userFunctions": [],
   "symbols": {
     "internal": {
-      "TestPosX": {
+      "J1": {
         "value": 0.0,
         "type": "tchmi:general#/definitions/Number",
         "persist": false,
         "readonly": false
       },
-      "TestPosY": {
+      "J2": {
         "value": 0.0,
         "type": "tchmi:general#/definitions/Number",
         "persist": false,
         "readonly": false
       },
-      "TestPosZ": {
+      "J3": {
         "value": 0.0,
         "type": "tchmi:general#/definitions/Number",
         "persist": false,
         "readonly": false
       },
-      "TestRotX": {
+      "J4": {
         "value": 0.0,
         "type": "tchmi:general#/definitions/Number",
         "persist": false,
         "readonly": false
       },
-      "TestRotY": {
+      "J5": {
         "value": 0.0,
         "type": "tchmi:general#/definitions/Number",
         "persist": false,
         "readonly": false
       },
-      "TestRotZ": {
+      "J6": {
         "value": 0.0,
         "type": "tchmi:general#/definitions/Number",
         "persist": false,
@@ -108,6 +109,16 @@
       "TestScale": {
         "value": 1.0,
         "type": "tchmi:general#/definitions/Number",
+        "persist": false,
+        "readonly": false
+      },
+      "scaling": {
+        "value": {
+          "x": 0.01,
+          "y": 0.01,
+          "z": 0.01
+        },
+        "type": "tchmi:framework#/definitions/TcHmi.Controls.TcHmi3dDynamics.DynamicScene.Vector3",
         "persist": false,
         "readonly": false
       }

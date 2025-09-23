@@ -37,8 +37,18 @@ var TcHmi;
                     this.__engine = null;
                     this.__scene = null;
                     this.__meshList = [];
-                    this.__loadedMeshes = [];
+                    this.__meshMap = new Map();
                     this.__loadingMeshes = false;
+
+                    this.__sceneOptions = {
+                        cameraRadius: 1,
+                        wheelPrecision: 100,
+                        showCoordAxis: true,
+                        coordAxisSize: 0.1
+                    };
+                    this.__coordAxis = null;
+
+                    this.__sceneBgColor = null;
 
                     // animation
                     this.__wsInterval = 500;
@@ -59,6 +69,12 @@ var TcHmi;
                         this.__engine = new BABYLON.Engine(this.__elementCanvas, true);
                     }
 
+                    // websocket update rate effects animation framing
+                    const config = TcHmi.Config.get();
+                    this.__wsInterval = config.tcHmiServer.websocketIntervalTime;
+
+                    this.__createScene();
+
                     // Call __previnit of base class
                     super.__previnit();
                 }
@@ -68,12 +84,6 @@ var TcHmi;
                  * @returns {void}
                  */
                 __init() {
-
-                    // websocket update rate effects animation framing
-                    const config = TcHmi.Config.get();
-                    this.__wsInterval = config.tcHmiServer.websocketIntervalTime;
-
-                    this.__createScene();
                     super.__init();
                 }
                 /**
@@ -120,18 +130,13 @@ var TcHmi;
                     if (this.__engine) {
                         // init scene
                         const scene = new BABYLON.Scene(this.__engine);
-
-                        scene.useRightHandedSystem = true;
                         scene.createDefaultCameraOrLight(true, true, true);
                         scene.actionManager = new BABYLON.ActionManager(scene);
 
-                        // axis viewer
-                        new BABYLON.Debug.AxesViewer(scene, 0.1);
+                        scene.useRightHandedSystem = true;
 
-                        // import meshes
-                        if (this.__meshList.length) {
-                            this.__importMeshes(this.__meshList);
-                        }
+                        // axis viewer
+                        this.__coordAxis = new BABYLON.Debug.AxesViewer(scene, 1);
 
                         // render loop
                         this.__engine.runRenderLoop(function () {
@@ -149,9 +154,9 @@ var TcHmi;
                     this.__loadingMeshes = true;
 
                     // clear active meshes
-                    if (this.__loadedMeshes.length) {
-                        this.__loadedMeshes.forEach(m => m.dispose());
-                        this.__loadedMeshes.length = 0;
+                    if (this.__meshMap.size) {
+                        this.__meshMap.values().forEach(m => m.dispose());
+                        this.__meshMap.clear();
                     }
 
                     // calculate animation frames per second
@@ -167,13 +172,20 @@ var TcHmi;
                             // mesh properties
                             m.id = mesh.meshName;
 
+                            // parent/child relationship
+                            if (mesh.parent) {
+                                const parent = this.__meshMap.get(mesh.parent);
+                                if (parent) {
+                                    m.setParent(parent);
+                                }
+                            }
+
                             // apply initial properties
+                            m.scaling = new BABYLON.Vector3(mesh.scaling.x, mesh.scaling.y, mesh.scaling.z);
                             m.position = new BABYLON.Vector3(mesh.position.x, mesh.position.y, mesh.position.z);
                             m.rotation = new BABYLON.Vector3(mesh.rotation.x * Math.PI / 180, mesh.rotation.y * Math.PI / 180, mesh.rotation.z * Math.PI / 180);
-                            m.scaling = new BABYLON.Vector3(mesh.scaling.x, mesh.scaling.y, mesh.scaling.z);
 
-                            this.__loadedMeshes.push(m);
-
+                            // create animation keyframes
                             if (mesh.animate) {
                                 ["position", "rotation", "scaling"].forEach(prop => {
                                     const animation = new BABYLON.Animation(prop, prop, fps, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
@@ -181,6 +193,8 @@ var TcHmi;
                                     m.animations.push(animation);
                                 });
                             }
+
+                            this.__meshMap.set(m.id, m);
                         }
                     }
 
@@ -192,7 +206,7 @@ var TcHmi;
                     this.__meshList = meshes;
 
                     // mesh count changed, re-import
-                    if (meshes.length !== this.__loadedMeshes.length) {
+                    if (meshes.length !== this.__meshMap.size) {
                         this.__importMeshes(meshes);
                         return;
                     }
@@ -254,6 +268,26 @@ var TcHmi;
                     }
                 }
 
+                __updateSceneOptions(options) {
+                    this.__sceneOptions = options;
+                    if (!this.__scene) return;
+
+                    this.__scene.cameras[0].radius = this.__sceneOptions.cameraRadius;
+                    this.__scene.cameras[0].wheelPrecision = this.__sceneOptions.wheelPrecision;
+
+                    this.__coordAxis?.dispose();
+                    this.__coordAxis = null;
+                    if (this.__sceneOptions.showCoordAxis) {
+                        this.__coordAxis = new BABYLON.Debug.AxesViewer(this.__scene, this.__sceneOptions.coordAxisSize);
+                    }
+                }
+
+                __hmiColorToBablyonColor(hmiColor) {
+                    if (hmiColor == null) return;
+                    const [r, g, b, a] = hmiColor.color.match(/[\d\.]+/g).map(Number);
+                    return new BABYLON.Color4((r / 255), (g / 255), (b / 255), a);
+                }
+
                 // facilitates binding object property members
                 __resolveObjectProperty(propertyName, value, processFn) {
 
@@ -306,6 +340,23 @@ var TcHmi;
 
                 setMeshList(value) {
                     this.__resolveObjectProperty('meshList', value, this.__updateMeshList);
+                }
+
+                getSceneOptions() {
+                    return this.__sceneOptions;
+                }
+
+                setSceneOptions(value) {
+                    this.__resolveObjectProperty('sceneOptions', value, this.__updateSceneOptions);
+                }
+
+                getSceneBgColor() {
+                    return this.__sceneBgColor;
+                }
+
+                setSceneBgColor(value) {
+                    this.__sceneBgColor = value;
+                    if (value) this.__scene.clearColor = this.__hmiColorToBablyonColor(this.__sceneBgColor);
                 }
             }
             TcHmi3dDynamics.DynamicScene = DynamicScene;

@@ -7,6 +7,55 @@
       "frameworkControlType": "DynamicScene",
       "frameworkControlNamespace": "TcHmi.Controls.TcHmi3dDynamics"
     },
+    "TcHmi.Controls.TcHmi3dDynamics.DynamicScene.SceneOptions": {
+      "title": "SceneOptions",
+      "type": "object",
+      "description": "3D scene and camera options.",
+      "properties": {
+        "cameraRadius": {
+          "type": "integer"
+        },
+        "wheelPrecision": {
+          "type": "integer"
+        },
+        "showCoordAxis": {
+          "type": "boolean"
+        },
+        "coordAxisSize": {
+          "type": "number"
+        }
+      },
+      "propertiesMeta": [
+        {
+          "name": "cameraRadius",
+          "displayName": "Camera Radius",
+          "description": "Camera distance from target",
+          "defaultValue": 1,
+          "defaultValueInternal": 1
+        },
+        {
+          "name": "wheelPrecision",
+          "displayName": "Zoom Wheel Precision",
+          "description": "Mouse wheel zoom precision (lower = faster)",
+          "defaultValue": 100,
+          "defaultValueInternal": 100
+        },
+        {
+          "name": "showCoordAxis",
+          "displayName": "Show Coordinate Axis",
+          "description": "Show X/Y/Z reference coordinate axis",
+          "defaultValue": true,
+          "defaultValueInternal": true
+        },
+        {
+          "name": "coordAxisSize",
+          "displayName": "Coordinate Axis Size",
+          "description": "Size of reference coordinate axis",
+          "defaultValue": 0.1,
+          "defaultValueInternal": 0.1
+        }
+      ]
+    },
     "TcHmi.Controls.TcHmi3dDynamics.DynamicScene.MeshList": {
       "title": "MeshList",
       "type": "array",
@@ -88,6 +137,14 @@
                 "description": "Apply animation frames to dynamics",
                 "defaultValue": false,
                 "defaultValueInternal": false
+              },
+              {
+                "name": "parent",
+                "displayName": "Parent",
+                "category": "General",
+                "description": "Parent mesh name for parent/child relationship",
+                "defaultValue": "",
+                "defaultValueInternal": null
               }
             ],
             "properties": {
@@ -108,6 +165,9 @@
               },
               "animate": {
                 "type": "boolean"
+              },
+              "parent": {
+                "type": "string"
               }
             },
             "additionalProperties": false,
@@ -125,22 +185,22 @@
           "name": "x",
           "displayName": "X",
           "description": "X axis value",
-          "defaultValue": 0,
-          "defaultValueInternal": 0
+          "defaultValue": 0.0,
+          "defaultValueInternal": 0.0
         },
         {
           "name": "y",
           "displayName": "Y",
           "description": "Y axis value",
-          "defaultValue": 0,
-          "defaultValueInternal": 0
+          "defaultValue": 0.0,
+          "defaultValueInternal": 0.0
         },
         {
           "name": "z",
           "displayName": "Z",
           "description": "Z axis value",
-          "defaultValue": 0,
-          "defaultValueInternal": 0
+          "defaultValue": 0.0,
+          "defaultValueInternal": 0.0
         }
       ],
       "properties": {

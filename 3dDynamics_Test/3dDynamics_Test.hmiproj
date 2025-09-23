@@ -31,7 +31,7 @@
     <HmiCommunicationRouterPort>10100</HmiCommunicationRouterPort>
     <HmiCommunicationServerAuthPort>13000</HmiCommunicationServerAuthPort>
     <HmiInitial>14.2.116.1</HmiInitial>
-    <HmiRecent>14.3.221.1</HmiRecent>
+    <HmiRecent>14.3.379.1</HmiRecent>
     <HmiServerNodeAdvancedView>False</HmiServerNodeAdvancedView>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -150,7 +150,25 @@
     <Content Include=".eslintrc.json">
       <Visible>false</Visible>
     </Content>
-    <Content Include="Models\3dpartscraperV1.stl">
+    <Content Include="Models\Link1.STL">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Models\Link2.STL">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Models\Link3.STL">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Models\Link4.STL">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Models\Link5.STL">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Models\Link6.STL">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Models\Ped.STL">
       <SubType>Content</SubType>
     </Content>
     <Content Include="packages.config">

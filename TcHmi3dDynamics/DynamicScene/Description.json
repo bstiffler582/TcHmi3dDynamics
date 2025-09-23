@@ -86,6 +86,32 @@
       "defaultValue": null,
       "defaultValueInternal": null,
       "description": "List of meshes"
+    },
+    {
+      "name": "data-tchmi-scene-options",
+      "displayName": "Scene Options",
+      "type": "tchmi:framework#/definitions/TcHmi.Controls.TcHmi3dDynamics.DynamicScene.SceneOptions",
+      "propertyGetterName": "getSceneOptions",
+      "propertySetterName": "setSceneOptions",
+      "propertyName": "sceneOptions",
+      "bindable": true,
+      "allowSymbolExpressionsInObject": true,
+      "category": "Common",
+      "defaultValue": null,
+      "defaultValueInternal": null,
+      "description": "Scene and camera options"
+    },
+    {
+      "displayName": "Scene Background Color",
+      "name": "data-tchmi-scene-bgcolor",
+      "propertyGetterName": "getSceneBgColor",
+      "propertySetterName": "setSceneBgColor",
+      "propertyName": "sceneBgColor",
+      "type": "tchmi:framework#/definitions/SolidColor",
+      "category": "Colors",
+      "defaultValue": null,
+      "defaultValueInternal": null,
+      "description": "Rendering scene background color"
     }
   ],
   "attributeCategories": [],

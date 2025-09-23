@@ -20,7 +20,7 @@
     <ProjectName>TcHmi3dDynamics</ProjectName>
     <Name>TcHmi3dDynamics</Name>
     <HmiInitial>14.2.116.1</HmiInitial>
-    <HmiRecent>14.3.221.1</HmiRecent>
+    <HmiRecent>14.3.379.1</HmiRecent>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
