@@ -1,10 +1,10 @@
 ## TcHmi3dDynamics
 
-This project illustrates the use of a 3D environment <[babylonjs](https://www.babylonjs.com/)> in TwinCAT HMI.
+This project illustrates the use of a 3D environment ([BABYLONjs](https://www.babylonjs.com/)) in TwinCAT HMI.
 
-The framework project wraps the babylon environment in a configurable control, allowing users to import and render their own 3D models ([supported formats](https://doc.babylonjs.com/features/featuresDeepDive/importers/loadingFileTypes)).
+The framework project wraps the BABYLON environment in a configurable control, allowing users to import and render their own 3D models ([supported formats](https://doc.babylonjs.com/features/featuresDeepDive/importers/loadingFileTypes)).
 
-Scaling, position and rotation properties for each model can be bound to dynamic values (symbols) to provide real-time animation. The HMI project's symbol update rate is used to interpolate frames and smooth these animations.
+Scaling, position, and rotation properties for each model can be bound to dynamic values (symbols) to provide real-time animation. The HMI project's symbol update rate is used to interpolate frames and smooth these animations.
 
 There are two projects / solutions: 
 - **TcHmi3dDynamics**: The framework project / control, and associated types
