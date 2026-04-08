@@ -164,7 +164,7 @@
 }
 </script>
 </div>
-<div id="TcHmiLinearGauge_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLinearGauge" data-tchmi-base-animation-time="1000" data-tchmi-height="96" data-tchmi-height-unit="px" data-tchmi-label-range="90" data-tchmi-left="859" data-tchmi-left-unit="px" data-tchmi-show-labels="true" data-tchmi-show-ticks="true" data-tchmi-show-value-text="true" data-tchmi-start-from-zero="true" data-tchmi-top="169" data-tchmi-top-unit="px" data-tchmi-width="360" data-tchmi-width-unit="px" data-tchmi-value="%i%J2|BindingMode=TwoWay|BindingEvent=onValueChanged%/i%" data-tchmi-max-value="45" data-tchmi-editable="true" data-tchmi-step="1" data-tchmi-min-value="-45">
+<div id="TcHmiLinearGauge_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLinearGauge" data-tchmi-base-animation-time="1000" data-tchmi-height="96" data-tchmi-height-unit="px" data-tchmi-label-range="90" data-tchmi-left="859" data-tchmi-left-unit="px" data-tchmi-show-labels="true" data-tchmi-show-ticks="true" data-tchmi-show-value-text="true" data-tchmi-start-from-zero="true" data-tchmi-top="169" data-tchmi-top-unit="px" data-tchmi-width="360" data-tchmi-width-unit="px" data-tchmi-value="%i%J2|BindingMode=TwoWay|BindingEvent=onUserInteractionFinished%/i%" data-tchmi-max-value="45" data-tchmi-editable="true" data-tchmi-step="1" data-tchmi-min-value="-45">
 <script data-tchmi-target-attribute="data-tchmi-range" type="application/json">
 [
   {
@@ -191,7 +191,7 @@
 </script>
 
 </div>
-<div id="TcHmiLinearGauge_6" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLinearGauge" data-tchmi-base-animation-time="1000" data-tchmi-height="96" data-tchmi-height-unit="px" data-tchmi-label-range="90" data-tchmi-left="859" data-tchmi-left-unit="px" data-tchmi-show-labels="true" data-tchmi-show-ticks="true" data-tchmi-show-value-text="true" data-tchmi-start-from-zero="true" data-tchmi-top="63" data-tchmi-top-unit="px" data-tchmi-width="360" data-tchmi-width-unit="px" data-tchmi-value="%i%J1|BindingMode=TwoWay|BindingEvent=onValueChanged%/i%" data-tchmi-max-value="360" data-tchmi-editable="true" data-tchmi-step="15" data-tchmi-min-value="-360">
+<div id="TcHmiLinearGauge_6" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLinearGauge" data-tchmi-base-animation-time="1000" data-tchmi-height="96" data-tchmi-height-unit="px" data-tchmi-label-range="90" data-tchmi-left="859" data-tchmi-left-unit="px" data-tchmi-show-labels="true" data-tchmi-show-ticks="true" data-tchmi-show-value-text="true" data-tchmi-start-from-zero="true" data-tchmi-top="63" data-tchmi-top-unit="px" data-tchmi-width="360" data-tchmi-width-unit="px" data-tchmi-value="%i%J1|BindingMode=TwoWay|BindingEvent=onUserInteractionFinished%/i%" data-tchmi-max-value="360" data-tchmi-editable="true" data-tchmi-step="15" data-tchmi-min-value="-360" data-tchmi-input-processing-point="Change">
 <script data-tchmi-target-attribute="data-tchmi-range" type="application/json">
 [
   {
@@ -218,7 +218,7 @@
 </script>
 
 </div>
-<div id="TcHmiLinearGauge_7" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLinearGauge" data-tchmi-base-animation-time="1000" data-tchmi-height="96" data-tchmi-height-unit="px" data-tchmi-label-range="90" data-tchmi-left="859" data-tchmi-left-unit="px" data-tchmi-show-labels="true" data-tchmi-show-ticks="true" data-tchmi-show-value-text="true" data-tchmi-start-from-zero="true" data-tchmi-top="275" data-tchmi-top-unit="px" data-tchmi-width="360" data-tchmi-width-unit="px" data-tchmi-value="%i%J3|BindingMode=TwoWay|BindingEvent=onValueChanged%/i%" data-tchmi-max-value="45" data-tchmi-editable="true" data-tchmi-step="1" data-tchmi-min-value="-45">
+<div id="TcHmiLinearGauge_7" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLinearGauge" data-tchmi-base-animation-time="1000" data-tchmi-height="96" data-tchmi-height-unit="px" data-tchmi-label-range="90" data-tchmi-left="859" data-tchmi-left-unit="px" data-tchmi-show-labels="true" data-tchmi-show-ticks="true" data-tchmi-show-value-text="true" data-tchmi-start-from-zero="true" data-tchmi-top="275" data-tchmi-top-unit="px" data-tchmi-width="360" data-tchmi-width-unit="px" data-tchmi-value="%i%J3|BindingMode=TwoWay|BindingEvent=onUserInteractionFinished%/i%" data-tchmi-max-value="45" data-tchmi-editable="true" data-tchmi-step="1" data-tchmi-min-value="-45">
 <script data-tchmi-target-attribute="data-tchmi-range" type="application/json">
 [
   {
@@ -245,7 +245,7 @@
 </script>
 
 </div>
-<div id="TcHmiLinearGauge_8" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLinearGauge" data-tchmi-base-animation-time="1000" data-tchmi-height="96" data-tchmi-height-unit="px" data-tchmi-label-range="90" data-tchmi-left="859" data-tchmi-left-unit="px" data-tchmi-show-labels="true" data-tchmi-show-ticks="true" data-tchmi-show-value-text="true" data-tchmi-start-from-zero="true" data-tchmi-top="381" data-tchmi-top-unit="px" data-tchmi-width="360" data-tchmi-width-unit="px" data-tchmi-value="%i%J4|BindingMode=TwoWay|BindingEvent=onValueChanged%/i%" data-tchmi-max-value="360" data-tchmi-editable="true" data-tchmi-step="15" data-tchmi-min-value="-360">
+<div id="TcHmiLinearGauge_8" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLinearGauge" data-tchmi-base-animation-time="1000" data-tchmi-height="96" data-tchmi-height-unit="px" data-tchmi-label-range="90" data-tchmi-left="859" data-tchmi-left-unit="px" data-tchmi-show-labels="true" data-tchmi-show-ticks="true" data-tchmi-show-value-text="true" data-tchmi-start-from-zero="true" data-tchmi-top="381" data-tchmi-top-unit="px" data-tchmi-width="360" data-tchmi-width-unit="px" data-tchmi-value="%i%J4|BindingMode=TwoWay|BindingEvent=onUserInteractionFinished%/i%" data-tchmi-max-value="360" data-tchmi-editable="true" data-tchmi-step="15" data-tchmi-min-value="-360">
 <script data-tchmi-target-attribute="data-tchmi-range" type="application/json">
 [
   {
@@ -272,7 +272,7 @@
 </script>
 
 </div>
-<div id="TcHmiLinearGauge_9" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLinearGauge" data-tchmi-base-animation-time="1000" data-tchmi-height="96" data-tchmi-height-unit="px" data-tchmi-label-range="90" data-tchmi-left="859" data-tchmi-left-unit="px" data-tchmi-show-labels="true" data-tchmi-show-ticks="true" data-tchmi-show-value-text="true" data-tchmi-start-from-zero="true" data-tchmi-top="593" data-tchmi-top-unit="px" data-tchmi-width="360" data-tchmi-width-unit="px" data-tchmi-value="%i%J6|BindingMode=TwoWay|BindingEvent=onValueChanged%/i%" data-tchmi-max-value="360" data-tchmi-editable="true" data-tchmi-step="15" data-tchmi-min-value="-360">
+<div id="TcHmiLinearGauge_9" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLinearGauge" data-tchmi-base-animation-time="1000" data-tchmi-height="96" data-tchmi-height-unit="px" data-tchmi-label-range="90" data-tchmi-left="859" data-tchmi-left-unit="px" data-tchmi-show-labels="true" data-tchmi-show-ticks="true" data-tchmi-show-value-text="true" data-tchmi-start-from-zero="true" data-tchmi-top="593" data-tchmi-top-unit="px" data-tchmi-width="360" data-tchmi-width-unit="px" data-tchmi-value="%i%J6|BindingMode=TwoWay|BindingEvent=onUserInteractionFinished%/i%" data-tchmi-max-value="360" data-tchmi-editable="true" data-tchmi-step="15" data-tchmi-min-value="-360">
 <script data-tchmi-target-attribute="data-tchmi-range" type="application/json">
 [
   {
@@ -299,7 +299,7 @@
 </script>
 
 </div>
-<div id="TcHmiLinearGauge_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLinearGauge" data-tchmi-base-animation-time="1000" data-tchmi-height="96" data-tchmi-height-unit="px" data-tchmi-label-range="90" data-tchmi-left="859" data-tchmi-left-unit="px" data-tchmi-show-labels="true" data-tchmi-show-ticks="true" data-tchmi-show-value-text="true" data-tchmi-start-from-zero="true" data-tchmi-top="487" data-tchmi-top-unit="px" data-tchmi-width="360" data-tchmi-width-unit="px" data-tchmi-value="%i%J5|BindingMode=TwoWay|BindingEvent=onValueChanged%/i%" data-tchmi-max-value="90" data-tchmi-editable="true" data-tchmi-step="1" data-tchmi-min-value="-90">
+<div id="TcHmiLinearGauge_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLinearGauge" data-tchmi-base-animation-time="1000" data-tchmi-height="96" data-tchmi-height-unit="px" data-tchmi-label-range="90" data-tchmi-left="859" data-tchmi-left-unit="px" data-tchmi-show-labels="true" data-tchmi-show-ticks="true" data-tchmi-show-value-text="true" data-tchmi-start-from-zero="true" data-tchmi-top="487" data-tchmi-top-unit="px" data-tchmi-width="360" data-tchmi-width-unit="px" data-tchmi-value="%i%J5|BindingMode=TwoWay|BindingEvent=onUserInteractionFinished%/i%" data-tchmi-max-value="90" data-tchmi-editable="true" data-tchmi-step="1" data-tchmi-min-value="-90">
 <script data-tchmi-target-attribute="data-tchmi-range" type="application/json">
 [
   {
