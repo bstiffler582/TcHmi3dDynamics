@@ -4316,225 +4316,6 @@
     "TcHmiUserControlHost": {
       "$ref": "tchmi:framework#/definitions/TcHmi.Controls.System.TcHmiUserControlHost"
     },
-    "TcHmi.Controls.TcHmi3dDynamics.DynamicScene": {
-      "type": "object",
-      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
-      "frameworkControlType": "DynamicScene",
-      "frameworkControlNamespace": "TcHmi.Controls.TcHmi3dDynamics"
-    },
-    "TcHmi.Controls.TcHmi3dDynamics.DynamicScene.SceneOptions": {
-      "title": "SceneOptions",
-      "type": "object",
-      "description": "3D scene and camera options.",
-      "properties": {
-        "cameraRadius": {
-          "type": "integer"
-        },
-        "wheelPrecision": {
-          "type": "integer"
-        },
-        "showCoordAxis": {
-          "type": "boolean"
-        },
-        "coordAxisSize": {
-          "type": "number"
-        }
-      },
-      "propertiesMeta": [
-        {
-          "name": "cameraRadius",
-          "displayName": "Camera Radius",
-          "description": "Camera distance from target",
-          "defaultValue": 1,
-          "defaultValueInternal": 1
-        },
-        {
-          "name": "wheelPrecision",
-          "displayName": "Zoom Wheel Precision",
-          "description": "Mouse wheel zoom precision (lower = faster)",
-          "defaultValue": 100,
-          "defaultValueInternal": 100
-        },
-        {
-          "name": "showCoordAxis",
-          "displayName": "Show Coordinate Axis",
-          "description": "Show X/Y/Z reference coordinate axis",
-          "defaultValue": true,
-          "defaultValueInternal": true
-        },
-        {
-          "name": "coordAxisSize",
-          "displayName": "Coordinate Axis Size",
-          "description": "Size of reference coordinate axis",
-          "defaultValue": 0.1,
-          "defaultValueInternal": 0.1
-        }
-      ]
-    },
-    "TcHmi.Controls.TcHmi3dDynamics.DynamicScene.MeshList": {
-      "title": "MeshList",
-      "type": "array",
-      "items": {
-        "anyOf": [
-          {
-            "title": "Import",
-            "type": "object",
-            "engineeringColumns": [
-              "meshName"
-            ],
-            "propertiesMeta": [
-              {
-                "name": "meshName",
-                "displayName": "Mesh Name",
-                "category": "General",
-                "description": "Name of mesh",
-                "defaultValue": "Mesh",
-                "defaultValueInternal": null
-              },
-              {
-                "name": "path",
-                "displayName": "Path",
-                "category": "General",
-                "description": "Path to mesh file",
-                "defaultValue": null,
-                "defaultValueInternal": null
-              },
-              {
-                "name": "position",
-                "displayName": "Position",
-                "category": "General",
-                "description": "Mesh position",
-                "defaultValue": {
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0.0
-                },
-                "defaultValueInternal": {
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0.0
-                }
-              },
-              {
-                "name": "rotation",
-                "displayName": "Rotation",
-                "category": "General",
-                "description": "Mesh rotation",
-                "defaultValue": {
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0.0
-                },
-                "defaultValueInternal": {
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0.0
-                }
-              },
-              {
-                "name": "scaling",
-                "displayName": "Scaling",
-                "category": "General",
-                "description": "Mesh scaling",
-                "defaultValue": {
-                  "x": 1.0,
-                  "y": 1.0,
-                  "z": 1.0
-                },
-                "defaultValueInternal": {
-                  "x": 1.0,
-                  "y": 1.0,
-                  "z": 1.0
-                }
-              },
-              {
-                "name": "animate",
-                "displayName": "Animate",
-                "category": "General",
-                "description": "Apply animation frames to dynamics",
-                "defaultValue": false,
-                "defaultValueInternal": false
-              },
-              {
-                "name": "parent",
-                "displayName": "Parent",
-                "category": "General",
-                "description": "Parent mesh name for parent/child relationship",
-                "defaultValue": "",
-                "defaultValueInternal": null
-              }
-            ],
-            "properties": {
-              "meshName": {
-                "type": "string"
-              },
-              "path": {
-                "$ref": "tchmi:framework#/definitions/Path"
-              },
-              "position": {
-                "$ref": "tchmi:framework#/definitions/TcHmi.Controls.TcHmi3dDynamics.DynamicScene.Vector3"
-              },
-              "rotation": {
-                "$ref": "tchmi:framework#/definitions/TcHmi.Controls.TcHmi3dDynamics.DynamicScene.Vector3"
-              },
-              "scaling": {
-                "$ref": "tchmi:framework#/definitions/TcHmi.Controls.TcHmi3dDynamics.DynamicScene.Vector3"
-              },
-              "animate": {
-                "type": "boolean"
-              },
-              "parent": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "meshName",
-              "path"
-            ]
-          }
-        ]
-      }
-    },
-    "TcHmi.Controls.TcHmi3dDynamics.DynamicScene.Vector3": {
-      "title": "Vector3",
-      "type": "object",
-      "description": "XYZ axis values",
-      "propertiesMeta": [
-        {
-          "name": "x",
-          "displayName": "X",
-          "description": "X axis value",
-          "defaultValue": 0.0,
-          "defaultValueInternal": 0.0
-        },
-        {
-          "name": "y",
-          "displayName": "Y",
-          "description": "Y axis value",
-          "defaultValue": 0.0,
-          "defaultValueInternal": 0.0
-        },
-        {
-          "name": "z",
-          "displayName": "Z",
-          "description": "Z axis value",
-          "defaultValue": 0.0,
-          "defaultValueInternal": 0.0
-        }
-      ],
-      "properties": {
-        "x": {
-          "type": "number"
-        },
-        "y": {
-          "type": "number"
-        },
-        "z": {
-          "type": "number"
-        }
-      }
-    },
     "TcHmi.Controls.Beckhoff.TcHmiAccordionRegion": {
       "type": "object",
       "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
@@ -13940,6 +13721,225 @@
     },
     "VideoSourceList": {
       "$ref": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiVideo.VideoSourceList"
+    },
+    "TcHmi.Controls.TcHmi3dDynamics.DynamicScene": {
+      "type": "object",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkControlType": "DynamicScene",
+      "frameworkControlNamespace": "TcHmi.Controls.TcHmi3dDynamics"
+    },
+    "TcHmi.Controls.TcHmi3dDynamics.DynamicScene.SceneOptions": {
+      "title": "SceneOptions",
+      "type": "object",
+      "description": "3D scene and camera options.",
+      "properties": {
+        "cameraRadius": {
+          "type": "integer"
+        },
+        "wheelPrecision": {
+          "type": "integer"
+        },
+        "showCoordAxis": {
+          "type": "boolean"
+        },
+        "coordAxisSize": {
+          "type": "number"
+        }
+      },
+      "propertiesMeta": [
+        {
+          "name": "cameraRadius",
+          "displayName": "Camera Radius",
+          "description": "Camera distance from target",
+          "defaultValue": 1,
+          "defaultValueInternal": 1
+        },
+        {
+          "name": "wheelPrecision",
+          "displayName": "Zoom Wheel Precision",
+          "description": "Mouse wheel zoom precision (lower = faster)",
+          "defaultValue": 100,
+          "defaultValueInternal": 100
+        },
+        {
+          "name": "showCoordAxis",
+          "displayName": "Show Coordinate Axis",
+          "description": "Show X/Y/Z reference coordinate axis",
+          "defaultValue": true,
+          "defaultValueInternal": true
+        },
+        {
+          "name": "coordAxisSize",
+          "displayName": "Coordinate Axis Size",
+          "description": "Size of reference coordinate axis",
+          "defaultValue": 0.1,
+          "defaultValueInternal": 0.1
+        }
+      ]
+    },
+    "TcHmi.Controls.TcHmi3dDynamics.DynamicScene.MeshList": {
+      "title": "MeshList",
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "Import",
+            "type": "object",
+            "engineeringColumns": [
+              "meshName"
+            ],
+            "propertiesMeta": [
+              {
+                "name": "meshName",
+                "displayName": "Mesh Name",
+                "category": "General",
+                "description": "Name of mesh",
+                "defaultValue": "Mesh",
+                "defaultValueInternal": null
+              },
+              {
+                "name": "path",
+                "displayName": "Path",
+                "category": "General",
+                "description": "Path to mesh file",
+                "defaultValue": null,
+                "defaultValueInternal": null
+              },
+              {
+                "name": "position",
+                "displayName": "Position",
+                "category": "General",
+                "description": "Mesh position",
+                "defaultValue": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0
+                },
+                "defaultValueInternal": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0
+                }
+              },
+              {
+                "name": "rotation",
+                "displayName": "Rotation",
+                "category": "General",
+                "description": "Mesh rotation",
+                "defaultValue": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0
+                },
+                "defaultValueInternal": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0
+                }
+              },
+              {
+                "name": "scaling",
+                "displayName": "Scaling",
+                "category": "General",
+                "description": "Mesh scaling",
+                "defaultValue": {
+                  "x": 1.0,
+                  "y": 1.0,
+                  "z": 1.0
+                },
+                "defaultValueInternal": {
+                  "x": 1.0,
+                  "y": 1.0,
+                  "z": 1.0
+                }
+              },
+              {
+                "name": "animate",
+                "displayName": "Animate",
+                "category": "General",
+                "description": "Apply animation frames to dynamics",
+                "defaultValue": false,
+                "defaultValueInternal": false
+              },
+              {
+                "name": "parent",
+                "displayName": "Parent",
+                "category": "General",
+                "description": "Parent mesh name for parent/child relationship",
+                "defaultValue": "",
+                "defaultValueInternal": null
+              }
+            ],
+            "properties": {
+              "meshName": {
+                "type": "string"
+              },
+              "path": {
+                "$ref": "tchmi:framework#/definitions/Path"
+              },
+              "position": {
+                "$ref": "tchmi:framework#/definitions/TcHmi.Controls.TcHmi3dDynamics.DynamicScene.Vector3"
+              },
+              "rotation": {
+                "$ref": "tchmi:framework#/definitions/TcHmi.Controls.TcHmi3dDynamics.DynamicScene.Vector3"
+              },
+              "scaling": {
+                "$ref": "tchmi:framework#/definitions/TcHmi.Controls.TcHmi3dDynamics.DynamicScene.Vector3"
+              },
+              "animate": {
+                "type": "boolean"
+              },
+              "parent": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "meshName",
+              "path"
+            ]
+          }
+        ]
+      }
+    },
+    "TcHmi.Controls.TcHmi3dDynamics.DynamicScene.Vector3": {
+      "title": "Vector3",
+      "type": "object",
+      "description": "XYZ axis values",
+      "propertiesMeta": [
+        {
+          "name": "x",
+          "displayName": "X",
+          "description": "X axis value",
+          "defaultValue": 0.0,
+          "defaultValueInternal": 0.0
+        },
+        {
+          "name": "y",
+          "displayName": "Y",
+          "description": "Y axis value",
+          "defaultValue": 0.0,
+          "defaultValueInternal": 0.0
+        },
+        {
+          "name": "z",
+          "displayName": "Z",
+          "description": "Z axis value",
+          "defaultValue": 0.0,
+          "defaultValueInternal": 0.0
+        }
+      ],
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "z": {
+          "type": "number"
+        }
+      }
     },
     "TcHmi.Functions.Beckhoff.Increment.IncrementValueSymbol": {
       "allOf": [

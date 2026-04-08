@@ -1,5 +1,5 @@
 {
-  "$schema": "./../../Packages/Beckhoff.TwinCAT.HMI.Framework.14.3.229/runtimes/native1.12-tchmi/Schema/TchmiConfig.Schema.json",
+  "$schema": "./../../Packages/Beckhoff.TwinCAT.HMI.Framework.14.3.500/runtimes/native1.12-tchmi/Schema/TchmiConfig.Schema.json",
   "basePath": "./Beckhoff.TwinCAT.HMI.Framework",
   "scaleMode": "None",
   "startupView": "Desktop.view",
@@ -58,6 +58,7 @@
     }
   ],
   "userControls": [],
+  "controls": [],
   "content": [],
   "views": [
     {
@@ -124,7 +125,8 @@
       }
     },
     "themedResources": {},
-    "timer": {}
+    "timer": {},
+    "package": {}
   },
   "intervals": {},
   "trigger": [],
@@ -148,19 +150,34 @@
   "packages": [
     {
       "name": "TcHmi3dDynamics",
-      "basePath": "/TcHmi3dDynamics"
+      "basePath": "/TcHmi3dDynamics",
+      "symbols": {
+        "package": {}
+      },
+      "engineering": {
+        "projectReference": true
+      }
     },
     {
       "name": "Beckhoff.TwinCAT.HMI.Controls",
-      "basePath": "/Beckhoff.TwinCAT.HMI.Controls"
+      "basePath": "/Beckhoff.TwinCAT.HMI.Controls",
+      "symbols": {
+        "package": {}
+      }
     },
     {
       "name": "Beckhoff.TwinCAT.HMI.Framework",
-      "basePath": "/Beckhoff.TwinCAT.HMI.Framework"
+      "basePath": "/Beckhoff.TwinCAT.HMI.Framework",
+      "symbols": {
+        "package": {}
+      }
     },
     {
       "name": "Beckhoff.TwinCAT.HMI.Functions",
-      "basePath": "/Beckhoff.TwinCAT.HMI.Functions"
+      "basePath": "/Beckhoff.TwinCAT.HMI.Functions",
+      "symbols": {
+        "package": {}
+      }
     }
   ],
   "keyboardLayouts": [
