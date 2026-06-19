@@ -91,8 +91,15 @@ var TcHmi;
                  * This function is only to be used by the System. Other function calls are not intended.
                  */
                 __attach() {
-                    this.__engine?.resize();
                     super.__attach();
+                    this.__engine?.resize();
+
+                    if (this.__scene && this.__engine) {
+                        const scene = this.__scene;
+                        this.__engine.runRenderLoop(function(){
+                            scene.render();
+                        });
+                    }
                     /**
                      * Initialize everything which is only available while the control is part of the active dom.
                      */
@@ -103,7 +110,9 @@ var TcHmi;
                  */
                 __detach() {
                     super.__detach();
-
+                    if (this.__engine){
+                        this.__engine.stopRenderLoop();
+                    }
                     /**
                      * Disable everything that is not needed while the control is not part of the active DOM.
                      * For example, there is usually no need to listen for events!
@@ -120,6 +129,14 @@ var TcHmi;
                     if (this.__keepAlive) {
                         return;
                     }
+                    
+                    if(this.__scene){
+                        this.__scene.dispose();
+                    }
+                    if(this.__engine){
+                        this.__engine.dispose();
+                    }
+
                     super.destroy();
                     /**
                      * Free resources like child controls etc.
@@ -137,11 +154,6 @@ var TcHmi;
 
                         // axis viewer
                         this.__coordAxis = new BABYLON.Debug.AxesViewer(scene, 1);
-
-                        // render loop
-                        this.__engine.runRenderLoop(function () {
-                            scene.render();
-                        });
 
                         this.__scene = scene;
                     }
