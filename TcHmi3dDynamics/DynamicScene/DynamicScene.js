@@ -129,13 +129,10 @@ var TcHmi;
                     if (this.__keepAlive) {
                         return;
                     }
-                    
-                    if(this.__scene){
-                        this.__scene.dispose();
-                    }
-                    if(this.__engine){
-                        this.__engine.dispose();
-                    }
+
+                    // cleanup
+                    this.__scene!.dispose();
+                    this.__engine!.dispose();
 
                     super.destroy();
                     /**
